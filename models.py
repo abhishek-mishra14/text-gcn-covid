@@ -49,7 +49,7 @@ class Model(object):
         self.outputs = self.activations[-1]
 
         # Store model variables for easy access
-        variables = tf.compat.v1.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=self.name)
+        variables = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.GLOBAL_VARIABLES, scope=self.name)
         self.vars = {var.name: var for var in variables}
 
         # Build metrics
