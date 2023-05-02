@@ -93,7 +93,7 @@ class MLP(Model):
         self.output_dim = placeholders['labels'].get_shape().as_list()[1]
         self.placeholders = placeholders
 
-        self.optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
+        self.optimizer = tf.optimizers.Adam(learning_rate=FLAGS.learning_rate)
 
         self.build()
 
