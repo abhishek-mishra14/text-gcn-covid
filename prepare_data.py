@@ -18,10 +18,12 @@ def concatenate(title, keyword, abstract):
     return title + "$" + keyword + "$" + abstract
 
 
-dataset_name = "covid"
+dataset_name = "covid-semi"
 df = pd.read_excel("dataset.xlsx")
-df.dropna(subset=["Article title", "Article abstract", "Contextual"], inplace=True)
-# df.fillna({"Contextual": -1}, inplace=True)
+df.dropna(subset=["Article title", "Article abstract"], inplace=True)
+df.fillna({"Contextual": -1}, inplace=True)
+
+
 df["Concatenated"] = df.apply(
     lambda x: concatenate(
         x["Article title"], x["Article keywords"], x["Article abstract"]
@@ -30,9 +32,16 @@ df["Concatenated"] = df.apply(
 )
 df = df.astype({"Contextual": "int32"})
 df = df[["Concatenated", "Contextual"]]
-df.reset_index(drop=True, inplace=True)
 
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=84)
+df_labeled = df[df["Contextual"] != -1]
+df_unlabeled = df[df["Contextual"] == -1]
+
+print("Labeled: ", len(df_labeled))
+print("Unlabeled: ", len(df_unlabeled))
+
+
+
+train_df, test_df = df_labeled, df_unlabeled
 
 train_list, test_list = train_df.values.tolist(), test_df.values.tolist()
 
