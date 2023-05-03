@@ -9,7 +9,7 @@ if len(sys.argv) != 2:
 	sys.exit("Use: python remove_words.py <dataset>")
 
 # datasets = ['20ng', 'R8', 'R52', 'ohsumed', 'mr', 'covid', 'covid-full']
-# dataset = sys.argv[1]
+dataset = sys.argv[1]
 
 # if dataset not in datasets:
 # 	sys.exit("wrong dataset name")
