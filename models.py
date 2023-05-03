@@ -49,7 +49,7 @@ class Model(object):
         self.outputs = self.activations[-1]
 
         # Store model variables for easy access
-        variables = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=self.name)
+        variables = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.GLOBAL_VARIABLES, scope=self.name)
         self.vars = {var.name: var for var in variables}
 
         # Build metrics
@@ -93,7 +93,7 @@ class MLP(Model):
         self.output_dim = placeholders['labels'].get_shape().as_list()[1]
         self.placeholders = placeholders
 
-        self.optimizer = tf.optimizers.Adam(learning_rate=FLAGS.learning_rate)
+        self.optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
 
         self.build()
 
@@ -140,7 +140,7 @@ class GCN(Model):
         self.output_dim = placeholders['labels'].get_shape().as_list()[1]
         self.placeholders = placeholders
 
-        self.optimizer = tf.optimizers.Adam(learning_rate=FLAGS.learning_rate)
+        self.optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
 
         self.build()
 

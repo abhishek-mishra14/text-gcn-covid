@@ -1,7 +1,7 @@
 from inits import *
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
-flags = tf.compat.v1.flags
+flags = tf.flags
 FLAGS = flags.FLAGS
 
 # global unique layer ID dictionary for layer name assignment
