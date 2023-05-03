@@ -12,10 +12,11 @@ def concatenate(title, keyword, abstract):
         # print("Keyword: ", keyword)
         keyword = ""
     else:
+        keyword = keyword.replace(";", " ")
         keyword = f"{keyword}."
     abstract = f"{abstract}"
 
-    return title + "$" + keyword + "$" + abstract
+    return title + " " + keyword + " " + abstract
 
 
 dataset_name = "covid-semi"
