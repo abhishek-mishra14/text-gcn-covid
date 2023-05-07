@@ -84,13 +84,13 @@ placeholders = {
 }
 
 # Create model
+
 print(features[2][1])
 model = model_func(placeholders, input_dim=features[2][1], logging=True)
 
 # Initialize session
 session_conf = tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True))
 sess = tf.Session(config=session_conf)
-
 
 # Define model evaluation function
 def evaluate(features, support, labels, mask, placeholders):
